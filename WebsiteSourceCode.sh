@@ -7,7 +7,7 @@ ytdwnURL=https://codeload.github.com/SteepAtticStairs/ytdwn/zip/refs/heads/main
 homebrewytdwnURL=https://codeload.github.com/SteepAtticStairs/homebrew-ytdwn/zip/refs/heads/main
 largeFilesURL=https://codeload.github.com/SteepAtticStairs/LargeFiles/zip/refs/heads/main
 updateBrewURL=https://codeload.github.com/SteepAtticStairs/updateBrew/zip/refs/heads/main
-randomShellFilesURL=https://codeload.github.com/SteepAtticStairs/RandomShellFiles/zip/refs/heads/main
+randomStuffURL=https://codeload.github.com/SteepAtticStairs/RandomStuff/zip/refs/heads/main
 zshThemesURL=https://codeload.github.com/SteepAtticStairs/ZSH-Themes/zip/refs/heads/main
 theAtticRealmURL=https://codeload.github.com/SteepAtticStairs/TheAtticRealm/zip/refs/heads/main
 now="$(date '+%m.%d.%Y')"
@@ -42,8 +42,8 @@ updateBrewHash () {
     shortHash=$(echo ${fullHash:0:7})
     makeDir
 }
-randomShellFilesHash () {
-    cd ~/Github/RandomShellFiles
+randomStuffHash () {
+    cd ~/Github/RandomStuff
     fullHash=$(git log -1 --format="%H" origin/main)
     shortHash=$(echo ${fullHash:0:7})
     makeDir
@@ -87,8 +87,8 @@ largeFilesHash
     wget -O "LargeFiles_${now}_${shortHash}.zip" $largeFilesURL
 theAtticRealmHash
     wget -O "TheAtticRealm_${now}_${shortHash}.zip" $theAtticRealmURL
-randomShellFilesHash
-    wget -O "RandomShellFiles_${now}_${shortHash}.zip" $randomShellFilesURL
+randomStuffHash
+    wget -O "RandomStuff_${now}_${shortHash}.zip" $randomStuffURL
 
 elif [[ $seletion == no ]]; then
 
@@ -98,7 +98,7 @@ ytdwnHash
     wget -O "ytdwn_${now}_${shortHash}.zip" $ytdwnURL
 homebrewytdwnHash
     wget -O "homebrew-ytdwn_${now}_${shortHash}.zip" $homebrewytdwnURL
-randomShellFilesHash
-    wget -O "RandomShellFiles_${now}_${shortHash}.zip" $randomShellFilesURL
+randomStuffHash
+    wget -O "RandomStuff_${now}_${shortHash}.zip" $randomStuffURL
 
 fi
