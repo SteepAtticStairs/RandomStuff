@@ -1,0 +1,27 @@
+function parse_git_branch() {
+   git branch --show-current 2> /dev/null
+}
+
+git_prompt() {
+   echo "$(git_prompt_info)" | sed -E 's/.*(.{2})$/\1/'
+}
+
+# set the git_prompt_info text
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_PROMPT_DIRTY="><"
+ZSH_THEME_GIT_PROMPT_CLEAN="<>"
+
+setopt PROMPT_SUBST
+
+export PROMPT='%F{cyan}%n%f %F{027}%1~%f %F{055}$(parse_git_branch)%f %F{160}$(git_prompt)%f                    
+%F{green}$%f '
+
+
+# echo '\e[1 q' for block cursor
+
+echo '\e[5 q'
+clear
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /Users/andrewlawlor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

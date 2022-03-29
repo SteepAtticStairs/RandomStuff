@@ -12,47 +12,93 @@ zshThemesURL=https://codeload.github.com/SteepAtticStairs/ZSH-Themes/zip/refs/he
 theAtticRealmURL=https://codeload.github.com/SteepAtticStairs/TheAtticRealm/zip/refs/heads/main
 now="$(date '+%m.%d.%Y')"
 
+myWebsiteHash () {
+    cd ~/Github/steepatticstairs.github.io
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+ytdwnHash () {
+    cd ~/Github/ytdwn
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+homebrewytdwnHash () {
+    cd ~/Github/homebrew-ytdwn
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+largeFilesHash () {
+    cd ~/Github/LargeFiles
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+updateBrewHash () {
+    cd ~/Github/updateBrew
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+randomShellFilesHash () {
+    cd ~/Github/RandomShellFiles
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+zshThemesHash () {
+    cd ~/Github/ZSH-Themes
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
+theAtticRealmHash () {
+    cd ~/Github/TheAtticRealm
+    fullHash=$(git log -1 --format="%H" origin/main)
+    shortHash=$(echo ${fullHash:0:7})
+    makeDir
+}
 
-cd ~/Downloads || exit
-dirName="GithubBackup_${now}"
-mkdir $dirName
-cd $dirName || exit
+
+makeDir () {
+    cd ~/Downloads || exit
+    dirName="GithubBackup_${now}"
+    mkdir $dirName
+    cd $dirName || exit
+}
+
 
 echo ""
-echo "In addition, would you like to download LargeFiles, TheAtticRealm, both, or neither?"
-echo "LARGE / ATTIC / BOTH / NO"
+echo "In addition, would you like to download LargeFiles and TheAtticRealm, or neither?"
+echo "BOTH / NO"
 read seletion
 
-if [[ $seletion == large ]]; then
-    wget -O "steepatticstairs.github.io_${now}.zip" $myWebsiteURL
-    wget -O "ytdwn_${now}.zip" $ytdwnURL
-    wget -O "homebrew-ytdwn_${now}.zip" $homebrewytdwnURL
-    wget -O "LargeFiles_${now}.zip" $largeFilesURL
-    wget -O "updateBrew_${now}.zip" $updateBrewURL
-    wget -O "RandomShellFiles_${now}.zip" $randomShellFilesURL
-    wget -O "ZSH-Themes_${now}.zip" $zshThemesURL
-elif [[ $seletion == attic ]]; then
-    wget -O "steepatticstairs.github.io_${now}.zip" $myWebsiteURL
-    wget -O "ytdwn_${now}.zip" $ytdwnURL
-    wget -O "homebrew-ytdwn_${now}.zip" $homebrewytdwnURL
-    wget -O "TheAtticRealm_${now}.zip" $theAtticRealmURL
-    wget -O "updateBrew_${now}.zip" $updateBrewURL
-    wget -O "RandomShellFiles_${now}.zip" $randomShellFilesURL
-    wget -O "ZSH-Themes_${now}.zip" $zshThemesURL
-elif [[ $seletion == both ]]; then
-    wget -O "steepatticstairs.github.io_${now}.zip" $myWebsiteURL
-    wget -O "ytdwn_${now}.zip" $ytdwnURL
-    wget -O "homebrew-ytdwn_${now}.zip" $homebrewytdwnURL
-    wget -O "LargeFiles_${now}.zip" $largeFilesURL
-    wget -O "TheAtticRealm_${now}.zip" $theAtticRealmURL
-    wget -O "updateBrew_${now}.zip" $updateBrewURL
-    wget -O "RandomShellFiles_${now}.zip" $randomShellFilesURL
-    wget -O "ZSH-Themes_${now}.zip" $zshThemesURL
+if [[ $seletion == both ]]; then
+
+myWebsiteHash
+    wget -O "steepatticstairs.github.io_${now}_${shortHash}.zip" $myWebsiteURL
+ytdwnHash
+    wget -O "ytdwn_${now}_${shortHash}.zip" $ytdwnURL
+homebrewytdwnHash
+    wget -O "homebrew-ytdwn_${now}_${shortHash}.zip" $homebrewytdwnURL
+largeFilesHash
+    wget -O "LargeFiles_${now}_${shortHash}.zip" $largeFilesURL
+theAtticRealmHash
+    wget -O "TheAtticRealm_${now}_${shortHash}.zip" $theAtticRealmURL
+randomShellFilesHash
+    wget -O "RandomShellFiles_${now}_${shortHash}.zip" $randomShellFilesURL
+
 elif [[ $seletion == no ]]; then
-    wget -O "steepatticstairs.github.io_${now}.zip" $myWebsiteURL
-    wget -O "ytdwn_${now}.zip" $ytdwnURL
-    wget -O "homebrew-ytdwn_${now}.zip" $homebrewytdwnURL
-    wget -O "updateBrew_${now}.zip" $updateBrewURL
-    wget -O "RandomShellFiles_${now}.zip" $randomShellFilesURL
-    wget -O "ZSH-Themes_${now}.zip" $zshThemesURL
+
+myWebsiteHash
+    wget -O "steepatticstairs.github.io_${now}_${shortHash}.zip" $myWebsiteURL
+ytdwnHash
+    wget -O "ytdwn_${now}_${shortHash}.zip" $ytdwnURL
+homebrewytdwnHash
+    wget -O "homebrew-ytdwn_${now}_${shortHash}.zip" $homebrewytdwnURL
+randomShellFilesHash
+    wget -O "RandomShellFiles_${now}_${shortHash}.zip" $randomShellFilesURL
+
 fi

@@ -1,0 +1,11 @@
+function parse_git_branch() {
+    git branch --show-current 2> /dev/null
+}
+
+setopt PROMPT_SUBST
+
+export PROMPT='%F{cyan}%n%f %F{027}%1~%f %F{055}$(parse_git_branch)%f                     
+%F{green}$%f '
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /Users/andrewlawlor/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
